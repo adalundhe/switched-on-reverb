@@ -4,7 +4,6 @@ dotenv.config()
 
 
 async function getReverbData(){
-
     await axios.get(
         `${process.env.API_BASE_URL}/api/listings/fetch`,
         {
