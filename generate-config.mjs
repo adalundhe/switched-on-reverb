@@ -21,5 +21,4 @@ async function generateConfig(){
     await Fs.appendFile('.env', `\nSWITCHED_ON_AUTH_KEY=${authToken}`);
 }
 
-
 generateConfig()
