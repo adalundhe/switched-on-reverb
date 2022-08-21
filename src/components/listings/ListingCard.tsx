@@ -1,4 +1,4 @@
-import { Listing} from '../../../types/reverb';
+import { Listing} from '../../types/reverb';
 import parse from 'html-react-parser';
 import Image from 'next/image'
 

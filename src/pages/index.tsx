@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { trpc } from "../utils/trpc";
-import { Listings } from './components'
+import { Listings } from '../components'
 
 
 const Home: NextPage = () => {

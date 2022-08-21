@@ -1,4 +1,4 @@
-import { ReverbStoreListings } from '../../../types/reverb';
+import { ReverbStoreListings } from '../../types/reverb';
 import { ListingCard } from './ListingCard';
 
 
