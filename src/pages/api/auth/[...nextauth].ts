@@ -14,9 +14,9 @@ import bcrypt from 'bcrypt'
 
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
-  // adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prisma),
   providers: [
-
+    
   ],
 };
 
