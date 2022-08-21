@@ -8,11 +8,8 @@ async function generateConfig(){
 
     try {
        await Fs.access('.env')
-
     } catch (error) {
-
         Fs.writeFile('.env', "")
-        
     }
     
     const salt = await bcrypt.genSalt(10);
