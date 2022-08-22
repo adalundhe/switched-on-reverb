@@ -4,7 +4,7 @@ import { CURRENCY } from '../../../../config'
 import { formatAmountForStripe } from '../../../../utils/stripe-helpers'
 import { PrismaClient } from '@prisma/client'
 import Stripe from 'stripe'
-import { env } from '../../../../env/client.mjs'
+import { env } from '../../../../env/server.mjs'
 
  
 const stripe = new Stripe(env.STRIPE_SECRET_KEY!, {

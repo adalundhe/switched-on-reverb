@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { env } from '../../../../env/client.mjs'
+import { env } from '../../../../env/server.mjs'
 import Stripe from 'stripe'
 
 

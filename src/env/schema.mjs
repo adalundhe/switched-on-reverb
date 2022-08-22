@@ -21,7 +21,8 @@ export const serverSchema = z.object({
   EMAIL_SERVER: z.string(),
   EMAIL_FROM: z.string(),
   REVERB_API_KEY: z.string(),
-  API_BASE_URL: z.string().url()
+  API_BASE_URL: z.string().url(),
+  STRIPE_SECRET_KEY: z.string()
 });
 
 /**
@@ -30,8 +31,7 @@ export const serverSchema = z.object({
  * To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
 export const clientSchema = z.object({
-  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string(),
-  STRIPE_SECRET_KEY: z.string()
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string()
 });
 
 /**
@@ -41,7 +41,7 @@ export const clientSchema = z.object({
  * @type {{ [k in keyof z.infer<typeof clientSchema>]: z.infer<typeof clientSchema>[k] | undefined }}
  */
 export const clientEnv = {
-  // NEXT_PUBLIC_BAR: process.env.NEXT_PUBLIC_BAR,
-  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+  // // NEXT_PUBLIC_BAR: process.env.NEXT_PUBLIC_BAR,
+  // STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 };
