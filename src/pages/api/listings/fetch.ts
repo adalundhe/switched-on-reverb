@@ -1,14 +1,11 @@
 import axios from "axios"
 import bcrypt from 'bcrypt'
 import type { NextApiRequest, NextApiResponse } from "next"
-import { unstable_getServerSession } from "next-auth/next"
-import { getToken } from "next-auth/jwt"
 import { env } from "../../../env/server.mjs";
 import { PrismaClient } from "@prisma/client";
 import { Listing } from "@prisma/client";
-import { authOptions } from "../auth/[...nextauth]"
 
-export default async function protectedHandler(
+export default async function fetchListings(
   req: NextApiRequest,
   res: NextApiResponse
 ) {

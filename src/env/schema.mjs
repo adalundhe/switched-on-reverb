@@ -14,16 +14,14 @@ export const serverSchema = z.object({
   SWITCHED_ON_AUTH_SECRET: z.string(),
   SWITCHED_ON_API_KEY: z.string(),
   SWITCHED_ON_AUTH_KEY: z.string(),
-  // DISCORD_CLIENT_ID: z.string(),
-  // DISCORD_CLIENT_SECRET: z.string(),
-  // GOOGLE_CLIENT_ID: z.string(),
-  // GOOGLE_CLIENT_SECRET: z.string(),
-  // EMAIL_SERVER: z.string(),
-  // EMAIL_FROM: z.string(),
+  DISCORD_CLIENT_ID: z.string(),
+  DISCORD_CLIENT_SECRET: z.string(),
+  GOOGLE_CLIENT_ID: z.string(),
+  GOOGLE_CLIENT_SECRET: z.string(),
+  EMAIL_SERVER: z.string(),
+  EMAIL_FROM: z.string(),
   REVERB_API_KEY: z.string(),
   API_BASE_URL: z.string().url()
-  // FACEBOOK_CLIENT_ID: z.string(),
-  // FACEBOOK_CLIENT_SECRET: z.string()
 });
 
 /**
@@ -32,7 +30,8 @@ export const serverSchema = z.object({
  * To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
 export const clientSchema = z.object({
-  // NEXT_PUBLIC_BAR: z.string(),
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string(),
+  STRIPE_SECRET_KEY: z.string()
 });
 
 /**
@@ -43,4 +42,6 @@ export const clientSchema = z.object({
  */
 export const clientEnv = {
   // NEXT_PUBLIC_BAR: process.env.NEXT_PUBLIC_BAR,
+  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 };
