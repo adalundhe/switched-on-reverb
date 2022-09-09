@@ -14,7 +14,7 @@ export const listingsRouter = createRouter()
       });
     },
   })
-  .query("/matching", {
+  .query("matching", {
     input: z
       .object({
         name: z.string(),
