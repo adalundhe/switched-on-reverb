@@ -1,20 +1,23 @@
-import { Listing} from '../../types/reverb';
+import { Listing, ListingPhoto } from '@prisma/client';
 import parse from 'html-react-parser';
 import Image from 'next/image'
 
 
 
-export const ListingCard = ({ listing }: {listing: Listing}) => {
+export const ListingCard = ({ listing }: {listing: Listing & {photos: ListingPhoto[]}}) => {
+
+    const primaryPhoto = listing.photos[0]
 
     const listinDescription = parse(listing.description)
 
     return (
-        <div>
-            <h2>{listing.title}</h2>
-            <Image src={listing.photos[0]?.full as string} width="100%" height="100%" />
-            <p>
+        <div className='w-full h-full flex flex-col items-center'>
+            <Image src={primaryPhoto?.full as string} width="300%" height="300%" />
+
+            {/* <p className='text-center pt-4 px-4'>{listing.title}</p> */}
+            {/* <p>
                 {listinDescription}
-            </p>
+            </p> */}
         </div>
     )
 }

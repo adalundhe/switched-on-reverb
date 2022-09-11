@@ -7,11 +7,18 @@ export const listingsRouter = createRouter()
   .query("all", {
     async resolve({ ctx }) {
 
-      return await ctx.prisma.listing.findMany({
-        orderBy: {
-          createdAt: "desc"
-        }
-      });
+      const listingsResults = {
+        listings: await ctx.prisma.listing.findMany({
+          orderBy: {
+            createdAt: "desc"
+          },
+          include: {
+            photos: true
+          }
+        })
+      }
+
+      return listingsResults
     },
   })
   .query("matching", {
@@ -31,6 +38,9 @@ export const listingsRouter = createRouter()
         },
         orderBy: {
           createdAt: "desc"
+        },
+        include: {
+          photos: true
         }
       });
     },

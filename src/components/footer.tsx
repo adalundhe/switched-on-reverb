@@ -1,15 +1,18 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYoutube, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { ContentMode } from "./header";
 
 
-export const Footer = () => {
+export const Footer = ({ footerMode = ContentMode.dark }: {footerMode?: ContentMode}) => {
 
 
     const currentYear = new Date().getFullYear();
 
+    const footerStyle = footerMode === ContentMode.dark ? "bg-black text-white" : "bg-white text-black border-t border-black-thin";
+
     return (
-        <footer className="bg-black py-2 text-center text-white h-1/4">
+        <footer className={`py-2 h-1/4 text-center ${footerStyle}`}>
             <div className="flex justify-center py-1">
                 <a href="https://www.instagram.com/switchedonaustin/">
                     <FontAwesomeIcon icon={faInstagram} className="px-1" />

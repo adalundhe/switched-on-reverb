@@ -87,7 +87,7 @@ model ListingPhoto {
     full String
     large String
     small String
-    thumbnaill String
+    thumbnail String
     reverbId Int @unique
     listing Listing @relation(fields: [reverbId], references: [reverbId], onDelete: Cascade)
 }

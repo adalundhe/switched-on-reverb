@@ -2,7 +2,7 @@ import axios from "axios"
 import bcrypt from 'bcrypt'
 import type { NextApiRequest, NextApiResponse } from "next"
 import { env } from "../../../env/server.mjs";
-import { PrismaClient } from "@prisma/client";
+import { ListingPhoto, PrismaClient } from "@prisma/client";
 import { Listing } from "@prisma/client";
 
 export default async function fetchListings(
@@ -27,16 +27,23 @@ export default async function fetchListings(
 
         for (let page=data.current_page; page<=data.total_pages + 1; page++){
 
+            let listingPhotos: ListingPhoto[] = [];
+
             const listings = data.listings.map((listing: typeof data.listings[0]) => {
 
-                const listingPhotos = listing.photos.map((photo: typeof listings.photos[0]) => photo._links);
-                const photos = listingPhotos.map((photo: typeof listingPhotos[0]) => ({
+                let photos = listing.photos.map((photo: typeof listings.photos[0]) => photo._links);
+                photos = photos.map((photo: typeof photos[0]) => ({
                     full: photo.full.href,
                     large: photo.large_crop.href,
                     small: photo.small_crop.href,
                     thumbnail: photo.thumbnail.href,
                     reverbId: listing.id
                 }))
+
+                listingPhotos = [
+                    ...listingPhotos,
+                    ...photos
+                ]
         
                 return {
                     item: {
@@ -63,14 +70,16 @@ export default async function fetchListings(
 
             await client.listing.createMany({
                 data: listings.map((listing: typeof listings[0]) => listing.item),
-            skipDuplicates: true
+                skipDuplicates: true
             })
 
             await client.listingPhoto.createMany({
-                data: listings.map((listing: typeof listings[0]) => listing.photo)
+                data: listingPhotos,
+                skipDuplicates: true
             })
 
             allListings = [
+                ...allListings,
                 ...listings.map((listing: typeof listings[0]) => ({
                     ...listing.item,
                     photos: listing.photos
